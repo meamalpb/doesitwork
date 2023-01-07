@@ -2,6 +2,7 @@ package com.example.doesitwork.topics;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,17 +17,27 @@ import jakarta.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping(path = "/topic")
 public class TopicController {
-    String id1;
+
+    @Autowired
+    private TopicService topicService;
+    
+
+    @GetMapping("/check")
+    public String Check(){
+        return topicService.Checkifworking();
+    }
+
     public ArrayList<Topic> topics = new ArrayList<>();
 
     @GetMapping("/")
     public ArrayList<Topic> getTopicsite(){
-        return topics;
+        return topicService.getTopics();
     }
 
     @PostMapping("/add")
     public void taketopic(@RequestBody Topic topic, HttpServletResponse response){
-        topics.add(topic);
+
+        topicService.addTopic(topic);
         try {
             response.sendRedirect("http://localhost:8080/topic/");
         } catch (IOException e) {
@@ -35,35 +46,18 @@ public class TopicController {
     }
 
     @GetMapping("/show/{id}")
-    public Topic updatetopic(@PathVariable String id){
-        for (int index = 0; index < topics.size(); index++) {
-            id1=topics.get(index).getId();
-            if(id1.equals(id)){
-                return topics.get(index);
-            }
-        }
-        return null;
+    public Topic showtopic(@PathVariable String id){
+        return topicService.show(id);
     }
 
     @PutMapping("/update")
     public ArrayList<Topic> updateTopics(@RequestBody Topic topic){
-        String id=topic.getId();
-        for (int i = 0; i < topics.size(); i++) {
-            if(topics.get(i).getId().equals(id)){
-                topics.set(i, topic);
-            }
-        }
-        return topics;
+        return topicService.updateTopic(topic);
     }
 
     @DeleteMapping("/delete/{id}")
     public ArrayList<Topic> deleteTopic(@PathVariable String id){
-        for (int i = 0; i < topics.size(); i++) {
-            if(topics.get(i).getId().equals(id)){
-                topics.remove(i);
-            }
-        }
-        return topics;
+        return   topicService.deleteTopic(id);
     }
 
 }
