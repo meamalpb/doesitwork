@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,12 +22,6 @@ public class TopicMain {
     @GetMapping("/")
     public ArrayList<Topic> getTopicsite(){
         return topics;
-    }
-
-
-    @RequestMapping(path = "/s",method = RequestMethod.GET)
-    public Topic yes(){
-        return  new Topic("amal", "kaal", 10);
     }
 
     @PostMapping("/add")
