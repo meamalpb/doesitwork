@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping(path = "/topic")
-public class TopicMain {
+public class TopicController {
     String id1;
     public ArrayList<Topic> topics = new ArrayList<>();
 
