@@ -2,7 +2,7 @@ package com.example.doesitwork.topics;
 
 
 public class Topic {
-
+    
     private String id;
     private String name;
     private int division;
