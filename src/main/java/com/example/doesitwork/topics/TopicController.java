@@ -22,11 +22,6 @@ public class TopicController {
     private TopicService topicService;
     
 
-    @GetMapping("/check")
-    public String Check(){
-        return topicService.Checkifworking();
-    }
-
     public ArrayList<Topic> topics = new ArrayList<>();
 
     @GetMapping("/")
@@ -52,12 +47,15 @@ public class TopicController {
 
     @PutMapping("/update")
     public ArrayList<Topic> updateTopics(@RequestBody Topic topic){
-        return topicService.updateTopic(topic);
+         topicService.updateTopic(topic);
+         return topicService.getTopics();
     }
 
     @DeleteMapping("/delete/{id}")
     public ArrayList<Topic> deleteTopic(@PathVariable String id){
-        return   topicService.deleteTopic(id);
+           topicService.deleteTopic(id);
+           return topicService.getTopics();
+
     }
 
 }

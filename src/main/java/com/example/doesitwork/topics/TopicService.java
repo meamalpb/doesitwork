@@ -31,22 +31,22 @@ public class TopicService {
         return null;
     }
 
-    public ArrayList<Topic> updateTopic( Topic topic){
+    public void updateTopic( Topic topic){
         String id=topic.getId();
         for (int i = 0; i < topics.size(); i++) {
             if(topics.get(i).getId().equals(id)){
                 topics.set(i, topic);
             }
         }
-        return topics;
+
     }
 
-    public ArrayList<Topic> deleteTopic(String id){
+    public void deleteTopic(String id){
         for (int i = 0; i < topics.size(); i++) {
             if(topics.get(i).getId().equals(id)){
                 topics.remove(i);
             }
         }
-        return topics;
+        
     }
 }
