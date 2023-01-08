@@ -55,7 +55,6 @@ public class TopicController {
     public ArrayList<Topic> deleteTopic(@PathVariable String id){
            topicService.deleteTopic(id);
            return topicService.getTopics();
-
     }
 
 }
